@@ -7,146 +7,180 @@ import { github, vsDark } from "@code-surfer/themes";
 
 export const theme = vsDark;
 
-# Hello 👋
+# Hi everyone 👋
 
-You are using [MDX Deck](https://github.com/jxnblk/mdx-deck) and [Code Surfer](https://codesurfer.pomb.us)
+- Ankeet Maini @ankeetmaini
+- Frontend Engineer at Flipkart
+
+---
+
+You're building an app...
+
+**coolest and greatest ever**
+
+---
+
+## [![Screenshot-2020-10-21-at-10-03-46-PM.png](https://i.postimg.cc/RVtGhRH0/Screenshot-2020-10-21-at-10-03-46-PM.png)](https://postimg.cc/4mJpFpwC)
+
+---
+
+## And it's going great
+
+until...
+
+---
+
+# Your PM said...
+
+![](https://media.giphy.com/media/VMmRM3EjhjBII/giphy.gif)
+
+---
+
+You thought **easy peasy**, just let me
+
+[![Screenshot-2020-10-21-at-10-21-53-PM.png](https://i.postimg.cc/Z5bWybMM/Screenshot-2020-10-21-at-10-21-53-PM.png)](https://postimg.cc/ykG1MHBm)
+
+---
+
+And you're now...
+
+![](https://media.giphy.com/media/3otPoIpKz3pYa4o2hq/giphy.gif)
+
+---
+
+But your usecase is very simple...
+
+![](https://media.giphy.com/media/ejKpjEfcPuYve/giphy.gif)
+
+---
+
+## What does it take to roll it on your own??
+
+---
+
+## things to keep track of
+
+- selected language
+- correct message for the selected language
 
 ---
 
 <CodeSurfer>
 
-```js title="This is a title" subtitle="and this a subtitle"
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
 
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
+```js 4:6 title="your app entrypoint"
+import React from "react";
+import { View } from "react-native";
 
-  if (!sit || ut < 1) {
-    return [];
-  }
+const App: React.FC = ({ children }) => {
+  return <View>{children}</View>;
+};
 
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
+export default App;
 ```
 
-```js
-function lorem(ipsum, dolor = 1) {
-  const sit = ipsum == null ? 0 : ipsum.sit;
-  dolor = sit - amet(dolor);
-  return sit
-    ? consectetur(ipsum, 0, dolor < 0 ? 0 : dolor)
-    : [];
-}
+```js title="add language"
+import React from "react";
+import { View } from "react-native";
 
-function adipiscing(...elit) {
-  if (!elit.sit) {
-    return [];
-  }
+const App: React.FC = ({ children }) => {
+  const [lang, setLang] = useState("english");
+  return <View>{children}</View>;
+};
 
-  const sed = elit[0];
-  return eiusmod.tempor(sed) ? sed : [sed];
-}
-
-function incididunt(ipsum, ut = 1) {
-  ut = labore.et(amet(ut), 0);
-  const sit = ipsum == null ? 0 : ipsum.sit;
-
-  if (!sit || ut < 1) {
-    return [];
-  }
-
-  let dolore = 0;
-  let magna = 0;
-  const aliqua = new eiusmod(labore.ut(sit / ut));
-
-  while (dolore < sit) {
-    aliqua[magna++] = consectetur(
-      ipsum,
-      dolore,
-      (dolore += ut)
-    );
-  }
-
-  return aliqua;
-}
-```
-
-```diff 1[10:14],2[15:19],3[22:27],10:12
-
+export default App;
 ```
 
 </CodeSurfer>
 
----
-
-<CodeSurferColumns themes={[vsDark, github]}>
-
-<Step>
-
-```js
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-```
-
-</Step>
-
-<Step>
-
-```js
-const lorem = (ipsum, dolor, sit) => {
-  const amet = dolor - ipsum;
-  return consectetur.adipiscing(
-    {
-      elit: sed.eiusmod(sit - dolor) / amet + 2,
-    },
-    (tempor, incididunt) => ipsum + amet * incididunt
-  );
-};
-
-const magna = aliqua => aliqua.ut((enim, ad) => enim, 0);
-```
-
-```js
-const minim = (ad, enim) => dolore.magna(ad / enim);
-
-const sed = (eiusmod, tempor, incididunt) => {
-  const ut = tempor - eiusmod;
-  return labore.et(
-    {
-      amet: dolore.magna(incididunt - tempor) / ut + 2,
-    },
-    (aliqua, elit) => eiusmod + ut * elit
-  );
-};
-```
-
-</Step>
-
-</CodeSurferColumns>
 
 ---
 
-docs:  
-[codesurfer.pomb.us](https://codesurfer.pomb.us)
+component sitemap
+
+[![Untitled-2020-10-22-1434.png](https://i.postimg.cc/XNsmNvdv/Untitled-2020-10-22-1434.png)](https://postimg.cc/jCJZZt8V)
+
+---
+
+sending the current lang
+
+[![Untitled-2020-10-22-1434-2.png](https://i.postimg.cc/76Y9jgBn/Untitled-2020-10-22-1434-2.png)](https://postimg.cc/5HT8CFWX)
+
+---
+
+### welcome to a phenomena
+
+![](https://media.giphy.com/media/3NtEfcZmzePW6Ps7Gn/giphy.gif)
+
+# prop drilling
+
+---
+
+# ~~prop drilling~~
+
+---
+
+## How can you get around this **inconvenience**?
+
+---
+
+IoC
+
+[![Untitled-2020-10-22-1758.png](https://i.postimg.cc/d3HQdWjX/Untitled-2020-10-22-1758.png)](https://postimg.cc/N2XwvkV7)
+
+---
+
+# Redux?
+
+---
+
+**but** today we'll use everyone's fav
+
+# Context
+
+provider pattern
+
+---
+
+[![Screenshot-2020-10-22-at-6-13-21-PM.png](https://i.postimg.cc/jjH7NbwF/Screenshot-2020-10-22-at-6-13-21-PM.png)](https://postimg.cc/XZvqStgf)
+
+---
+
+## to-do list
+
+1. A provider to wrap the app
+2. A convenience component to render strings/text
+
+---
+
+![](https://media.giphy.com/media/nGtOFccLzujug/giphy.gif)
+
+Let's write some code!
+
+---
+
+<CodeSurfer>
+
+
+```ts title="teeny tiny Provider" subtitle="step 1"
+import React from "react";
+
+export const InternationalisationProvider: React.FC = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
+```
+
+```js
+const Root = () => {
+  return (
+    <InternationalisationProvider>
+      <App />
+    </InternationalisationProvider>
+  );
+};
+```
+
+</CodeSurfer>
+
