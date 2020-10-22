@@ -3,9 +3,16 @@ import {
   CodeSurferColumns,
   Step,
 } from "code-surfer";
-import { github, vsDark } from "@code-surfer/themes";
+import {
+  github,
+  vsDark,
+  nightOwl,
+  shadesOfPurple,
+  useUnfocusedStyle,
+  dracula,
+} from "@code-surfer/themes";
 
-export const theme = vsDark;
+export const theme = nightOwl || vsDark;
 
 # Hi everyone 👋
 
@@ -180,6 +187,204 @@ const Root = () => {
     </InternationalisationProvider>
   );
 };
+```
+
+</CodeSurfer>
+
+
+---
+
+Adding stuff to the `InternationalisationProvider`
+
+- changeLanguage
+- translate
+
+---
+
+Translations files
+
+<CodeSurfer>
+
+
+```json title="en.json"
+{
+  "hi": "hi",
+  "coolest": "coolest",
+  "greatest": "greatest"
+}
+```
+
+```json title="hindi.json"
+{
+  "hi": "नमस्ते",
+  "coolest": "सबसे अच्छे",
+  "greatest": "महानतम"
+}
+```
+
+</CodeSurfer>
+
+
+---
+
+<CodeSurfer>
+
+
+```ts 2:5
+import React from "react";
+import * as EnglishStrings from "../messages/en.json";
+import * as HindiStrings from "../messages/hindi.json";
+
+type Languages = "en" | "hindi";
+
+export const InternationalisationProvider: React.FC = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
+```
+
+```ts
+import React from "react";
+import * as EnglishStrings from "../messages/en.json";
+import * as HindiStrings from "../messages/hindi.json";
+
+type Languages = "en" | "hindi";
+
+const createContext = (lang: Languages) => {
+  const translations: Record<
+    Languages,
+    Record<string, string>
+  > = {
+    en: EnglishStrings,
+    hindi: HindiStrings,
+  };
+
+  function translate(id: string): string {
+    return translations[lang][id];
+  }
+
+  return {
+    lang,
+    translate,
+  };
+};
+
+export const InternationalisationProvider: React.FC = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
+```
+
+```ts
+import React from "react";
+import * as EnglishStrings from "../messages/en.json";
+import * as HindiStrings from "../messages/hindi.json";
+
+type Languages = "en" | "hindi";
+
+const createContext = (lang: Languages) => {
+  const translations: Record<
+    Languages,
+    Record<string, string>
+  > = {
+    en: EnglishStrings,
+    hindi: HindiStrings,
+  };
+
+  function translate(id: string): string {
+    return translations[lang][id];
+  }
+
+  return {
+    lang,
+    translate,
+  };
+};
+
+const Context = React.createContext(createContext("en"));
+
+export const InternationalisationProvider: React.FC = ({
+  children,
+}) => {
+  return <>{children}</>;
+};
+```
+
+```ts
+import React from "react";
+import * as EnglishStrings from "../messages/en.json";
+import * as HindiStrings from "../messages/hindi.json";
+
+type Languages = "en" | "hindi";
+
+const createContext = (lang: Languages) => {
+  const translations: Record<
+    Languages,
+    Record<string, string>
+  > = {
+    en: EnglishStrings,
+    hindi: HindiStrings,
+  };
+
+  function translate(id: string): string {
+    return translations[lang][id];
+  }
+
+  return {
+    lang,
+    translate,
+  };
+};
+
+const Context = React.createContext(createContext("en"));
+
+export const InternationalisationProvider: React.FC = ({
+  children,
+}) => {
+  return (
+    <>
+      <Context.Provider value={createContext("en")}>
+        {children}
+      </Context.Provider>
+    </>
+  );
+};
+```
+
+</CodeSurfer>
+
+
+---
+
+# wow
+
+Ummm, but how do I use this??
+
+---
+
+## to-do list
+
+1. A provider to wrap the app [lol partially ✅]
+2. A convenience component to render strings/text
+
+---
+
+<CodeSurfer>
+
+
+```js subtitle="that convenience component"
+export const TranslationText: React.FC<{ id: string }> = ({
+  id,
+}) => {
+  const { translate } = useContext(Context);
+  return <Text>{translate(id)}</Text>;
+};
+```
+
+```ts
+<TranslationText id="coolest"></TranslationText>
 ```
 
 </CodeSurfer>
