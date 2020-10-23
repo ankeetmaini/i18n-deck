@@ -389,3 +389,143 @@ export const TranslationText: React.FC<{ id: string }> = ({
 
 </CodeSurfer>
 
+
+---
+
+# but life is seldom easy
+
+---
+
+[![Whats-App-Image-2020-10-22-at-11-46-04-PM.jpg](https://i.postimg.cc/59Pxm0Vc/Whats-App-Image-2020-10-22-at-11-46-04-PM.jpg)](https://postimg.cc/7b28HqhX)
+
+---
+
+# interpolations
+
+`Hi {{name}}! Special {{discount}}% only for you. Valid till {{numOfHours}} hours`
+
+```
+name=Ankeet
+discount=10
+numOfHours=2
+```
+
+==> Hi Ankeet! Special 10% only for you. Valid till 2 hours`
+
+---
+
+# step-1
+
+<CodeSurfer>
+
+
+```json title="en.json" subtitle="add placeholders in the messages"
+{
+  "hi": "hi",
+  "coolest": "coolest",
+  "greatest": "greatest",
+  "discount": "Hi {{name}}, {{discount}} valid for today only"
+}
+```
+
+</CodeSurfer>
+
+
+---
+
+# step-2
+
+<CodeSurfer>
+
+
+```js subtitle="prev code to get messages"
+function translate(id: string): string {
+  return translations[lang][id];
+}
+```
+
+```js 4:5 subtitle="extract placeholders"
+function translate(id: string, attrs): string {
+  let message = translations[lang][id];
+
+  const interpolations =
+    message && message.match(/{{[a-z]+}}/g);
+
+  if (interpolations) {
+    interpolations.forEach((interpolation) => {
+      const placeholder = interpolation.slice(2, -2);
+      message = message.replace(
+        interpolation,
+        attrs[placeholder]
+      );
+    });
+    return message;
+  }
+  return message;
+}
+```
+
+```js 7 subtitle="if placeholders"
+function translate(id: string, attrs): string {
+  let message = translations[lang][id];
+
+  const interpolations =
+    message && message.match(/{{[a-z]+}}/g);
+
+  if (interpolations) {
+    interpolations.forEach((interpolation) => {
+      const placeholder = interpolation.slice(2, -2);
+      message = message.replace(
+        interpolation,
+        attrs[placeholder]
+      );
+    });
+    return message;
+  }
+  return message;
+}
+```
+
+```js 1,8:15 subtitle="replace placeholders"
+function translate(id: string, attrs): string {
+  let message = translations[lang][id];
+
+  const interpolations =
+    message && message.match(/{{[a-z]+}}/g);
+
+  if (interpolations) {
+    interpolations.forEach((interpolation) => {
+      const placeholder = interpolation.slice(2, -2);
+      message = message.replace(
+        interpolation,
+        attrs[placeholder]
+      );
+    });
+    return message;
+  }
+  return message;
+}
+```
+
+</CodeSurfer>
+
+
+---
+
+# step-3
+
+<CodeSurfer>
+
+
+```ts
+<TranslationText
+  id="discount"
+  attrs={{
+    name: "Ankeet",
+    discount: 20,
+  }}
+/>
+```
+
+</CodeSurfer>
+
