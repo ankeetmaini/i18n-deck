@@ -400,7 +400,7 @@ export const TranslationText: React.FC<{ id: string }> = ({
 
 ---
 
-# interpolations
+interpolations
 
 `Hi {{name}}! Special {{discount}}% only for you. Valid till {{numOfHours}} hours`
 
@@ -410,11 +410,11 @@ discount=10
 numOfHours=2
 ```
 
-==> Hi Ankeet! Special 10% only for you. Valid till 2 hours`
+==> Hi Ankeet! Special 10% only for you. Valid till 2 hours
 
 ---
 
-# step-1
+step-1
 
 <CodeSurfer>
 
@@ -433,7 +433,7 @@ numOfHours=2
 
 ---
 
-# step-2
+step-2
 
 <CodeSurfer>
 
@@ -512,7 +512,7 @@ function translate(id: string, attrs): string {
 
 ---
 
-# step-3
+step-3
 
 <CodeSurfer>
 
@@ -529,3 +529,110 @@ function translate(id: string, attrs): string {
 
 </CodeSurfer>
 
+
+---
+
+it works, but TS integration sucks
+
+- no type-safety
+- no intellisense/autocomplete
+- no hint of what the interpolations are
+
+---
+
+# how can TS work though?
+
+- types are defined in json
+- no mapping available for interpolations
+- no structure
+
+## bottomline: very difficult
+
+---
+
+# things if they magically worked!
+
+- id type-safety
+- interpolation type-safety
+
+---
+
+# things if they magically worked!
+
+- ✅ id type-safety
+- interpolation type-safety
+
+---
+
+```js
+if hi         -> never
+if coolest    -> never
+if greatest   -> never
+if discount   -> {name, discount}
+```
+
+---
+
+<CodeSurfer>
+
+
+```ts
+types.push(`export type GetTranslationTextType<T> = `);
+Object.keys(base).map((key) => {
+  const message = base[key];
+  const occurrences = message.match(/{{[a-zA-Z0-9]+}}/g);
+  const count = occurrences ? occurrences.length : 0;
+  if (count === 0) {
+    types.push(`T extends "${key}" ? never :`);
+  } else {
+    // remove {{ }}
+    const varNames = occurrences
+      .map((v) => v.slice(2, -2))
+      .map((n) => `${n}: string`)
+      .join(",");
+
+    types.push(`T extends "${key}" ? { ${varNames} } :`);
+  }
+});
+types.push(`never;`);
+```
+
+</CodeSurfer>
+
+
+---
+
+Cooooooooool
+
+---
+
+# taking it another level
+
+---
+
+# running it on watch
+
+<CodeSurfer>
+
+
+```js
+var watch = require("node-watch");
+const fs = require("fs");
+const execFile = require("child_process").execFile;
+const spawn = require("child_process").spawn;
+const path = require("path");
+watch("./messages/en.json", { recursive: false }, () => {
+  execFile("node", [
+    path.resolve(__dirname, "generate-types"),
+  ]);
+});
+```
+
+</CodeSurfer>
+
+---
+
+Links:
+
+- code https://github.com/ankeetmaini/fun-internationalisation
+- deck 
